@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Mail } from "lucide-react";
 import { Container } from "@/components/shared/container";
 import { Breadcrumb } from "@/components/shared/breadcrumb";
 import { buildMetadata, siteConfig } from "@/lib/seo";
+import { ContactForm } from "@/app/contact/contact-form";
 
 export const metadata: Metadata = buildMetadata({
   title: "お問い合わせ",
@@ -10,7 +10,7 @@ export const metadata: Metadata = buildMetadata({
   path: "/contact",
 });
 
-const contactEmail = "support@toolly.example.com";
+const formEndpoint = "https://formspree.io/f/mjgqaddg";
 
 export default function ContactPage() {
   return (
@@ -22,20 +22,10 @@ export default function ContactPage() {
         {siteConfig.name}に関するご意見・ご要望・不具合の報告など、お気軽にご連絡ください。
       </p>
 
-      <div className="mt-8 flex items-center gap-3 rounded-2xl border border-border bg-card p-6 shadow-soft">
-        <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-          <Mail className="size-5" />
-        </span>
-        <div>
-          <p className="text-sm text-muted-foreground">メールでのお問い合わせ</p>
-          <a href={`mailto:${contactEmail}`} className="font-medium text-primary hover:underline">
-            {contactEmail}
-          </a>
-        </div>
-      </div>
+      <ContactForm formEndpoint={formEndpoint} />
 
       <p className="mt-6 text-xs text-muted-foreground">
-        内容によってはご返信までお時間をいただく場合や、ご返信できない場合がございます。あらかじめご了承ください。
+        送信いただいた内容は担当者に届きます。内容によってはご返信までお時間をいただく場合や、ご返信できない場合がございます。あらかじめご了承ください。
       </p>
     </Container>
   );

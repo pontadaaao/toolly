@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { Container } from "@/components/shared/container";
 import { Breadcrumb } from "@/components/shared/breadcrumb";
 import { ToolCard } from "@/components/shared/tool-card";
 import { EmptyState } from "@/components/shared/empty-state";
 import { categories } from "@/data/categories";
 import { getCategoryBySlug, getPopularTools, getToolsByCategory } from "@/lib/tools";
-import { buildMetadata } from "@/lib/seo";
+import { buildBreadcrumbSchema, buildMetadata, siteConfig } from "@/lib/seo";
 
 export function generateStaticParams() {
   return categories.map((category) => ({ slug: category.slug }));
@@ -21,10 +22,18 @@ export async function generateMetadata({
   const category = getCategoryBySlug(slug);
   if (!category) return {};
 
+  const tools = getToolsByCategory(category.slug);
+  const keywords = [
+    category.name,
+    `${category.name} ツール`,
+    ...new Set(tools.flatMap((tool) => [tool.name, ...tool.keywords])),
+  ].slice(0, 30);
+
   return buildMetadata({
     title: `${category.name}ツール一覧`,
     description: category.description,
     path: `/category/${category.slug}`,
+    keywords,
   });
 }
 
@@ -41,8 +50,36 @@ export default async function CategoryPage({
 
   const tools = getToolsByCategory(category.slug);
 
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: "カテゴリー", path: "/category" },
+    { name: category.name, path: `/category/${category.slug}` },
+  ]);
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: tools.map((tool, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: tool.name,
+      url: `${siteConfig.url}/tools/${tool.slug}`,
+    })),
+  };
+
   return (
     <Container className="py-8 sm:py-12">
+      <Script
+        id={`category-breadcrumb-schema-${category.slug}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      {tools.length > 0 && (
+        <Script
+          id={`category-itemlist-schema-${category.slug}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+        />
+      )}
+
       <Breadcrumb items={[{ name: "カテゴリー", href: "/category" }, { name: category.name }]} />
 
       <header className="mt-4 max-w-2xl">

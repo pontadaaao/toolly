@@ -1,17 +1,22 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Container } from "@/components/shared/container";
 import { Breadcrumb } from "@/components/shared/breadcrumb";
 import { SearchBar } from "@/components/shared/search-bar";
 import { ToolCard } from "@/components/shared/tool-card";
 import { EmptyState } from "@/components/shared/empty-state";
+import { categories } from "@/data/categories";
 import { getAllTools, getPopularTools, searchTools } from "@/lib/tools";
-import { buildMetadata } from "@/lib/seo";
+import { buildBreadcrumbSchema, buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "ツール一覧",
   description: "Toollyで公開しているすべての無料便利ツールの一覧です。画像・PDF・計算・テキストなど、目的に合わせてお選びいただけます。",
   path: "/tools",
+  keywords: [...categories.map((c) => c.name), ...getAllTools().map((t) => t.name), "無料ツール一覧"],
 });
+
+const breadcrumbSchema = buildBreadcrumbSchema([{ name: "ツール一覧", path: "/tools" }]);
 
 const popularSlugs = new Set(getPopularTools(20).map((t) => t.slug));
 
@@ -26,6 +31,11 @@ export default async function ToolsPage({
 
   return (
     <Container className="py-8 sm:py-12">
+      <Script
+        id="tools-breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Breadcrumb items={[{ name: "ツール一覧" }]} />
 
       <header className="mt-4 max-w-2xl">

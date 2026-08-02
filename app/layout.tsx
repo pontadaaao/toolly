@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/footer";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { buildMetadata, buildWebsiteSchema, siteConfig } from "@/lib/seo";
+import { buildMetadata, buildOrganizationSchema, buildWebsiteSchema, siteConfig } from "@/lib/seo";
 import "./globals.css";
 
 const notoSansJP = Noto_Sans_JP({
@@ -48,6 +48,11 @@ export default function RootLayout({
           id="website-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(buildWebsiteSchema()) }}
+        />
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(buildOrganizationSchema()) }}
         />
       </body>
     </html>

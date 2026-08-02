@@ -36,7 +36,7 @@ export default function Home() {
             <p className="text-xl font-bold sm:text-2xl">毎日使える無料便利ツール</p>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="max-w-xl text-sm text-muted-foreground sm:text-base">
+            <p className="max-w-xl text-sm text-muted-foreground sm:text-base sm:max-w-none sm:whitespace-nowrap">
               インストール不要・登録不要。仕事や日常で役立つ便利ツールを無料で利用できます。
             </p>
           </Reveal>
