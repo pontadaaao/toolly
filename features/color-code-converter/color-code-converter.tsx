@@ -107,7 +107,7 @@ export function ColorCodeConverter() {
             type="color"
             value={isValidHex(hexInput) ? normalizeHex(hexInput) : committedHex}
             onChange={(e) => handlePickerChange(e.target.value)}
-            className="h-8 w-16 cursor-pointer rounded-lg bg-transparent"
+            className="h-8 w-16 cursor-pointer rounded-lg bg-transparent [&::-moz-color-swatch]:rounded-lg [&::-moz-color-swatch]:border-none [&::-webkit-color-swatch]:rounded-lg [&::-webkit-color-swatch]:border-none [&::-webkit-color-swatch-wrapper]:rounded-lg [&::-webkit-color-swatch-wrapper]:border-none [&::-webkit-color-swatch-wrapper]:p-0"
             aria-label="カラーピッカー"
           />
         </div>
