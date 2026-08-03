@@ -148,4 +148,8 @@ export const toolComponents: Record<string, ComponentType> = {
       import("@/features/annual-income-hourly-wage/annual-income-hourly-wage").then((m) => m.AnnualIncomeHourlyWage),
     { loading: () => <ToolSkeleton />, ssr: false }
   ),
+  "color-code-converter": dynamic(
+    () => import("@/features/color-code-converter/color-code-converter").then((m) => m.ColorCodeConverter),
+    { loading: () => <ToolSkeleton />, ssr: false }
+  ),
 };

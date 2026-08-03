@@ -530,23 +530,19 @@ export const tools: ToolDefinition[] = [
   {
     slug: "school-year-lookup",
     name: "入学・卒業早見",
-    shortDescription: "生年月日から保育園〜大学までの入学・卒業予定日を一覧表示",
+    shortDescription: "生年月日から幼稚園〜大学までの入学・卒業予定日を一覧表示",
     description:
-      "生年月日を入力するだけで、日本の学校制度に沿って保育園・幼稚園・小学校・中学校・高校・大学の入園・入学日と卒園・卒業予定日をまとめて計算します。4月2日生まれを基準にした早生まれの学年判定にも対応しています。",
+      "生年月日を入力するだけで、日本の学校制度に沿って幼稚園・小学校・中学校・高校・大学の入園・入学日と卒園・卒業予定日をまとめて計算します。4月2日生まれを基準にした早生まれの学年判定にも対応しています。",
     category: "life",
     icon: "School",
     isPopular: false,
     releasedAt: "2026-08-01",
     keywords: ["入学 卒業 早見表", "何年生 生まれ年", "早生まれ 学年", "入学年度", "卒業年度"],
-    howToUse: ["生年月日を入力します。", "保育園から大学までの入園・入学日、卒園・卒業予定日が一覧で表示されます。"],
+    howToUse: ["生年月日を入力します。", "幼稚園から大学までの入園・入学日、卒園・卒業予定日が一覧で表示されます。"],
     faq: [
       {
         question: "早生まれ（1〜3月生まれ）でも正しく計算できますか？",
         answer: "はい。日本の学校制度に合わせて4月2日を学年の区切りとしているため、早生まれの方も正しい学年で入学・卒業日が計算されます。",
-      },
-      {
-        question: "保育園の入園日も計算されますか？",
-        answer: "保育園は0歳から就学前まで利用でき、入園時期がご家庭や自治体の状況によって異なるため、具体的な入園日ではなく利用可能時期の目安を表示しています。",
       },
     ],
     relatedSlugs: ["shichigosan-checker", "coming-of-age-calculator", "age-calculator"],
@@ -977,5 +973,38 @@ export const tools: ToolDefinition[] = [
       },
     ],
     relatedSlugs: ["take-home-pay", "gasoline-cost-calculator"],
+  },
+  {
+    slug: "color-code-converter",
+    name: "カラーコード変換",
+    metaTitle: "カラーコード変換｜HEX・RGB・HSLを無料でまとめて変換",
+    shortDescription: "色を選ぶだけでHEX・RGB・HSL・CMYKなど各種カラーコードに変換",
+    description:
+      "カラーピッカーまたはHEXコードの入力で色を選ぶだけで、HEX・RGB・RGBA・HSL・HSLA・CMYKの各コードをまとめて確認・コピーできます。濃淡チャートから近い色を選び直すこともできます。",
+    category: "web",
+    icon: "Palette",
+    isPopular: false,
+    releasedAt: "2026-08-02",
+    keywords: ["カラーコード変換", "HEX RGB 変換", "カラーピッカー", "色 コード 変換 無料", "HSL CMYK 変換"],
+    howToUse: [
+      "カラーピッカーで色を選ぶか、HEXコード欄に直接カラーコードを入力します。",
+      "HEX・RGB・RGBA・HSL・HSLA・CMYKの各コードが自動で表示されます。",
+      "気になるコードの右側のアイコンでワンクリックコピーできます。濃淡チャートから近い色を選び直すことも可能です。",
+    ],
+    calculationMethod: [
+      "HEXコードをRGB値に変換したうえで、標準的な変換式によりHSL（色相・彩度・明度）とCMYK（印刷用インク比率）を算出しています。",
+      "濃淡チャートは、選択した色のHSLの色相・彩度を保ったまま明度だけを段階的に変化させた色を並べています。",
+    ],
+    faq: [
+      {
+        question: "入力した色の情報はサーバーに送信されますか？",
+        answer: "いいえ。すべての変換処理はブラウザ内で完結し、サーバーに送信されることはありません。",
+      },
+      {
+        question: "CMYKの値は印刷でそのまま使えますか？",
+        answer: "画面表示用のRGBから計算した近似値です。実際の印刷では、使用するインクや用紙によって発色が異なるため、目安としてご利用ください。",
+      },
+    ],
+    relatedSlugs: ["barcode-generator", "url-encode-decode"],
   },
 ];

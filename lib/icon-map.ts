@@ -29,6 +29,7 @@ import {
   QrCode,
   Ratio,
   RefreshCw,
+  Palette,
   School,
   ShieldAlert,
   Sparkles,
@@ -84,6 +85,7 @@ export const iconMap: Record<string, LucideIcon> = {
   Fuel,
   BadgePercent,
   BriefcaseBusiness,
+  Palette,
 };
 
 export function getIcon(name: string): LucideIcon {

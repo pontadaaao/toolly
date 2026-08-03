@@ -21,19 +21,12 @@ function calcKindergartenEntranceDate(birthDate: Date): Date {
   return new Date(entranceYear, 3, 1);
 }
 
-/** 保育園〜大学卒業までの入園・入学・卒業予定日をまとめて算出する。 */
+/** 幼稚園〜大学卒業までの入園・入学・卒業予定日をまとめて算出する。 */
 export function calcEnrollmentTimeline(birthDate: Date): EnrollmentStage[] {
   const kindergartenEntrance = calcKindergartenEntranceDate(birthDate);
   const kindergartenGraduation = new Date(kindergartenEntrance.getFullYear() + 3, 2, 31);
 
   const stages: EnrollmentStage[] = [
-    {
-      key: "nursery",
-      label: "保育園",
-      entranceDate: null,
-      graduationDate: null,
-      note: "0歳から就学前まで利用でき、入園時期はご家庭の状況や自治体の空き状況により異なります。",
-    },
     {
       key: "kindergarten",
       label: "幼稚園",
