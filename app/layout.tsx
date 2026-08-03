@@ -23,9 +23,6 @@ export const metadata: Metadata = {
     path: "/",
   }),
   metadataBase: new URL(siteConfig.url),
-  icons: {
-    icon: "/favicon.ico",
-  },
   verification: {
     google: "8gOh2d6mZfnxdkhGDyRPppWPLWSzlflTz5g-u_FQBN8",
   },

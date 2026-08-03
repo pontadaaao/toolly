@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/lib/seo";
 
@@ -5,9 +7,12 @@ export const ogImageSize = { width: 1200, height: 630 };
 export const ogImageContentType = "image/png";
 export const ogImageAlt = `${siteConfig.name} - ${siteConfig.tagline}`;
 
-/** lucide-react's "Wrench" icon path — matches the header logo mark. */
-const wrenchPath =
-  "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z";
+/** Reads the brand mark (public/logo.png) as a data URI — satori (the renderer behind `next/og`) can't fetch local paths. */
+async function loadLogoDataUri(): Promise<string> {
+  const filePath = path.join(process.cwd(), "public", "logo.png");
+  const buffer = await readFile(filePath);
+  return `data:image/png;base64,${buffer.toString("base64")}`;
+}
 
 /**
  * satori (the renderer behind `next/og`) ships no CJK glyphs, so Japanese
@@ -28,7 +33,10 @@ async function loadNotoSansJP(text: string): Promise<ArrayBuffer> {
 
 /** Shared branded OG/Twitter card image, reused by app/opengraph-image.tsx and app/twitter-image.tsx. */
 export async function generateOgImage(): Promise<ImageResponse> {
-  const fontData = await loadNotoSansJP(siteConfig.tagline);
+  const [fontData, logoDataUri] = await Promise.all([
+    loadNotoSansJP(siteConfig.tagline),
+    loadLogoDataUri(),
+  ]);
 
   return new ImageResponse(
     (
@@ -44,21 +52,8 @@ export async function generateOgImage(): Promise<ImageResponse> {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 100,
-              height: 100,
-              borderRadius: 30,
-              background: "linear-gradient(135deg, #4F8EF7 0%, #59C3C3 100%)",
-            }}
-          >
-            <svg width={52} height={52} viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-              <path d={wrenchPath} />
-            </svg>
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element -- satori (next/og) requires a plain <img>, not next/image */}
+          <img src={logoDataUri} width={100} height={100} style={{ borderRadius: 26 }} alt="" />
           <div style={{ display: "flex", fontSize: 108, fontWeight: 900, color: "#1F2937" }}>{siteConfig.name}</div>
         </div>
         <div

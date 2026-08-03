@@ -68,6 +68,12 @@ export function ColorCodeConverter() {
     setCommittedHex(value);
   }
 
+  async function handleCopyHexInput() {
+    if (!isValidHex(hexInput)) return;
+    await navigator.clipboard.writeText(normalizeHex(hexInput).toUpperCase());
+    toast.success("カラーコード（HEX）をコピーしました");
+  }
+
   function handleReset() {
     setHexInput(DEFAULT_HEX);
     setCommittedHex(DEFAULT_HEX);
@@ -101,21 +107,34 @@ export function ColorCodeConverter() {
             type="color"
             value={isValidHex(hexInput) ? normalizeHex(hexInput) : committedHex}
             onChange={(e) => handlePickerChange(e.target.value)}
-            className="h-8 w-16 cursor-pointer rounded-lg border border-input bg-transparent p-0.5"
+            className="h-8 w-16 cursor-pointer rounded-lg bg-transparent"
             aria-label="カラーピッカー"
           />
         </div>
         <div className="space-y-2">
           <Label htmlFor="color-hex">カラーコード（HEX）</Label>
-          <Input
-            id="color-hex"
-            value={hexInput}
-            onChange={(e) => handleHexInputChange(e.target.value)}
-            placeholder="#4F8EF7"
-            aria-invalid={Boolean(error)}
-            aria-describedby={error ? "color-hex-error" : undefined}
-            className="font-mono"
-          />
+          <div className="relative">
+            <Input
+              id="color-hex"
+              value={hexInput}
+              onChange={(e) => handleHexInputChange(e.target.value)}
+              placeholder="#4F8EF7"
+              aria-invalid={Boolean(error)}
+              aria-describedby={error ? "color-hex-error" : undefined}
+              className="pr-9 font-mono"
+            />
+            <Button
+              type="button"
+              size="icon-sm"
+              variant="ghost"
+              onClick={handleCopyHexInput}
+              disabled={Boolean(error)}
+              aria-label="カラーコード（HEX）をコピー"
+              className="absolute inset-y-0 right-1 my-auto"
+            >
+              <Copy className="size-3.5" />
+            </Button>
+          </div>
         </div>
       </div>
       {error && <ErrorMessage id="color-hex-error">{error}</ErrorMessage>}

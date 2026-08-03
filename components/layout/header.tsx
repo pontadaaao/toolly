@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, Wrench } from "lucide-react";
+import { Menu } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { categories } from "@/data/categories";
@@ -13,6 +13,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Container } from "@/components/shared/container";
+import { Logo } from "@/components/shared/logo";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { cn } from "@/lib/utils";
 
@@ -42,9 +43,7 @@ export function Header() {
     >
       <Container className="flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-bold text-lg tracking-tight">
-          <span className="flex size-8 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-            <Wrench className="size-4" />
-          </span>
+          <Logo />
           Toolly
         </Link>
 

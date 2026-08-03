@@ -1,7 +1,8 @@
-import { AtSign, Camera, ThumbsUp, Wrench } from "lucide-react";
+import { AtSign, Camera, ThumbsUp } from "lucide-react";
 import Link from "next/link";
 import { categories } from "@/data/categories";
 import { Container } from "@/components/shared/container";
+import { Logo } from "@/components/shared/logo";
 
 const footerLinks = [
   { href: "/about", label: "サイトについて" },
@@ -25,9 +26,7 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-              <span className="flex size-8 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-                <Wrench className="size-4" />
-              </span>
+              <Logo />
               Toolly
             </Link>
             <p className="mt-3 max-w-sm text-sm text-muted-foreground">
