@@ -152,4 +152,23 @@ export const toolComponents: Record<string, ComponentType> = {
     () => import("@/features/color-code-converter/color-code-converter").then((m) => m.ColorCodeConverter),
     { loading: () => <ToolSkeleton />, ssr: false }
   ),
+  "gradient-background-generator": dynamic(
+    () =>
+      import("@/features/gradient-background-generator/gradient-background-generator").then(
+        (m) => m.GradientBackgroundGenerator
+      ),
+    { loading: () => <ToolSkeleton />, ssr: false }
+  ),
+  "warikan-calculator": dynamic(
+    () => import("@/features/warikan-calculator/warikan-calculator").then((m) => m.WarikanCalculator),
+    { loading: () => <ToolSkeleton />, ssr: false }
+  ),
+  "hensachi-calculator": dynamic(
+    () => import("@/features/hensachi-calculator/hensachi-calculator").then((m) => m.HensachiCalculator),
+    { loading: () => <ToolSkeleton />, ssr: false }
+  ),
+  "gpa-calculator": dynamic(
+    () => import("@/features/gpa-calculator/gpa-calculator").then((m) => m.GpaCalculator),
+    { loading: () => <ToolSkeleton />, ssr: false }
+  ),
 };

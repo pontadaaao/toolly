@@ -3,6 +3,8 @@ import {
   Award,
   BadgePercent,
   Barcode,
+  Blend,
+  BookOpen,
   BriefcaseBusiness,
   Cake,
   Calculator,
@@ -34,8 +36,10 @@ import {
   ShieldAlert,
   Sparkles,
   Table2,
+  TrendingUp,
   Type,
   UserCheck,
+  Users,
   Wallet,
   Fuel,
   type LucideIcon,
@@ -86,6 +90,10 @@ export const iconMap: Record<string, LucideIcon> = {
   BadgePercent,
   BriefcaseBusiness,
   Palette,
+  Blend,
+  Users,
+  TrendingUp,
+  BookOpen,
 };
 
 export function getIcon(name: string): LucideIcon {

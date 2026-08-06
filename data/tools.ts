@@ -95,7 +95,7 @@ export const tools: ToolDefinition[] = [
         answer: "会計処理のルールに合わせて選択してください。一般的な小売では四捨五入が多く使われます。",
       },
     ],
-    relatedSlugs: ["take-home-pay", "bmi"],
+    relatedSlugs: ["take-home-pay", "warikan-calculator", "bmi"],
   },
   {
     slug: "char-counter",
@@ -900,7 +900,7 @@ export const tools: ToolDefinition[] = [
         answer: "はい。結果表示エリアの「URLを共有」や「LINEで共有」ボタンから、そのまま共有できます。",
       },
     ],
-    relatedSlugs: ["point-return-calculator", "annual-income-hourly-wage", "take-home-pay"],
+    relatedSlugs: ["point-return-calculator", "warikan-calculator", "take-home-pay"],
   },
   {
     slug: "point-return-calculator",
@@ -937,7 +937,7 @@ export const tools: ToolDefinition[] = [
           "店舗やサービスによって付与条件・端数処理・ポイントの価値が異なるため、実際の付与ポイントを保証するものではありません。目安としてご利用ください。",
       },
     ],
-    relatedSlugs: ["gasoline-cost-calculator", "consumption-tax"],
+    relatedSlugs: ["gasoline-cost-calculator", "warikan-calculator", "consumption-tax"],
   },
   {
     slug: "annual-income-hourly-wage",
@@ -1006,5 +1006,152 @@ export const tools: ToolDefinition[] = [
       },
     ],
     relatedSlugs: ["barcode-generator", "url-encode-decode"],
+  },
+  {
+    slug: "gradient-background-generator",
+    name: "グラデーション背景メーカー",
+    metaTitle: "グラデーション背景メーカー｜色を選ぶだけで無料作成",
+    shortDescription: "色を選ぶだけで線形・放射状・円錐状のグラデーション背景を作成",
+    description:
+      "色と種類（線形・放射状・円錐状）を選ぶだけで、SNS投稿やサムネイル、壁紙用のグラデーション背景を作成できます。CSSコードのコピーとPNG画像でのダウンロードの両方に対応しています。",
+    category: "image",
+    icon: "Blend",
+    isPopular: false,
+    releasedAt: "2026-08-04",
+    keywords: ["グラデーション 背景", "グラデーション 作成 無料", "CSS グラデーション ジェネレーター", "背景画像 作成"],
+    howToUse: [
+      "プリセットから選ぶか、グラデーションの種類・角度・色を自由に設定します。",
+      "色は「色を追加」で増やしたり、位置をスライダーで調整したりできます。",
+      "出力サイズを選び、CSSコードをコピーするか、PNG画像としてダウンロードします。",
+    ],
+    calculationMethod: [
+      "プレビューはCSSのlinear-gradient／radial-gradient／conic-gradientをそのまま使用しています。",
+      "PNG画像はCanvas APIのネイティブなグラデーション機能（createLinearGradient等）で指定サイズに描画してから書き出すため、大きいサイズでも綺麗に出力されます。",
+    ],
+    faq: [
+      {
+        question: "商用利用できますか？",
+        answer: "はい。生成したグラデーション画像・CSSコードは自由にご利用いただけます。",
+      },
+      {
+        question: "放射状・円錐状グラデーションもCSSでそのまま使えますか？",
+        answer: "はい。表示されるCSSコードをそのまま`background`プロパティに指定するだけで、プレビューと同じ見た目になります。",
+      },
+    ],
+    relatedSlugs: ["color-code-converter", "sns-size", "jpg-png-converter"],
+  },
+  {
+    slug: "warikan-calculator",
+    name: "割り勘計算",
+    metaTitle: "割り勘計算｜合計金額と人数からすぐ計算",
+    shortDescription: "合計金額と人数から1人あたりの支払額を端数処理付きで計算",
+    description:
+      "合計金額と人数を入力するだけで、1人あたりの支払額を自動計算します。端数処理（切り捨て・四捨五入・切り上げ）や、幹事を無料にする設定にも対応。飲み会や旅行の精算にそのまま使えます。",
+    category: "money",
+    icon: "Users",
+    isPopular: true,
+    releasedAt: "2026-08-04",
+    keywords: ["割り勘 計算", "割り勘 計算機", "飲み会 割り勘", "幹事 割り勘"],
+    howToUse: [
+      "合計金額と人数を入力します。",
+      "端数処理の方法を選び、必要であれば「幹事は無料にする」にチェックを入れます。",
+      "1人あたりの支払額と、端数（不足分・お釣り）が自動で計算されます。",
+    ],
+    calculationMethod: [
+      "1人あたりの金額 = 合計金額 ÷ 支払い人数（端数処理を適用）",
+      "合計徴収額 = 1人あたりの金額 × 支払い人数",
+      "端数 = 合計金額 − 合計徴収額",
+    ],
+    faq: [
+      {
+        question: "端数処理はどれを選べばいいですか？",
+        answer: "切り捨てを選ぶと少し不足が出て誰かが追加負担、切り上げを選ぶと少し多く集まりお釣りが出ます。飲み会などでは切り捨てにして幹事が端数を負担するケースが多いです。",
+      },
+      {
+        question: "1人だけ多めに払ってもらうことはできますか？",
+        answer: "「幹事は無料にする」にチェックを入れると、幹事1人分を除いた人数で均等に割り勘します。それ以外の個別調整には対応していません。",
+      },
+    ],
+    relatedSlugs: ["point-return-calculator", "gasoline-cost-calculator", "consumption-tax"],
+  },
+  {
+    slug: "hensachi-calculator",
+    name: "偏差値計算機",
+    metaTitle: "偏差値計算機｜得点・平均点・標準偏差から無料で計算",
+    shortDescription: "高校・大学受験向け。教科ごとの得点・平均点・標準偏差から総合偏差値を計算",
+    description:
+      "国語・数学・英語など教科ごとの得点・平均点・標準偏差を入力するだけで、高校・大学受験に必要な総合偏差値と推定順位（上位◯%相当）が分かります。1教科だけの偏差値計算や、クラス・模試の得点一覧からの一括計算にも対応しています。",
+    category: "calculator",
+    icon: "TrendingUp",
+    isPopular: false,
+    releasedAt: "2026-08-05",
+    keywords: ["偏差値計算機", "受験 偏差値", "総合偏差値", "5教科 偏差値", "偏差値 出し方", "模試 偏差値"],
+    howToUse: [
+      "「教科別の合計から計算」タブで、国語・数学・英語などの教科ごとに得点・平均点・標準偏差を入力します。",
+      "教科は「教科を追加」で増減でき、入力した教科の合計得点と総合偏差値が自動で計算されます。",
+      "1教科だけ計算したい場合は「平均点・標準偏差から計算」、クラス・模試全員分の得点から平均や標準偏差を求めたい場合は「得点一覧から計算」タブをご利用ください。",
+    ],
+    calculationMethod: [
+      "教科ごとの偏差値 = (その教科の得点 − 平均点) ÷ 標準偏差 × 10 + 50",
+      "総合偏差値は、教科ごとに平均点・標準偏差が異なるため、各教科の偏差値を求めたうえでその平均を取る方式（合成偏差値の一般的な求め方）で算出しています。",
+      "標準偏差は母集団標準偏差（全データとの差の2乗の平均の平方根）で算出しています。",
+      "推定順位は、偏差値の分布が正規分布に従うと仮定した場合の目安（上位◯%相当）です。",
+    ],
+    faq: [
+      {
+        question: "総合偏差値はどうやって計算していますか？合計点をそのまま使わないのですか？",
+        answer: "教科ごとに平均点や得点のばらつき（標準偏差）が異なるため、素点を単純合計すると教科間の難易度差が反映されません。本ツールでは教科ごとの偏差値を求めたうえで平均する方式を採用しています。",
+      },
+      {
+        question: "標準偏差が分からない場合はどうすればいいですか？",
+        answer: "「得点一覧から計算」タブでクラスや模試全員分の得点を入力してください。平均点と標準偏差が自動で計算され、そのまま偏差値も算出されます。",
+      },
+      {
+        question: "「上位◯%相当」はどのように計算していますか？",
+        answer: "得点の分布が正規分布に従うと仮定し、偏差値から統計的に推定した目安です。実際の試験の得点分布によっては誤差が生じる場合があります。",
+      },
+      {
+        question: "入力した得点データはサーバーに送信されますか？",
+        answer: "いいえ。すべての計算はブラウザ内で完結し、サーバーに送信・保存されることはありません。",
+      },
+    ],
+    relatedSlugs: ["gpa-calculator", "graduation-date", "school-year-lookup"],
+  },
+  {
+    slug: "gpa-calculator",
+    name: "GPA・評定平均計算機",
+    metaTitle: "GPA・評定平均計算機｜大学のGPA、高校の評定平均を無料計算",
+    shortDescription: "大学の成績からGPAを、高校の成績から評定平均を自動計算",
+    description:
+      "大学の履修科目（単位数・成績）を入力するだけでGPAを、高校の科目（5段階評定）を入力するだけで評定平均を自動計算します。科目は自由に追加・削除でき、就活のES作成や推薦入試の出願準備にそのまま使えます。",
+    category: "calculator",
+    icon: "BookOpen",
+    isPopular: false,
+    releasedAt: "2026-08-05",
+    keywords: ["GPA計算", "GPA計算機", "評定平均計算", "評定平均 出し方", "成績 平均 計算"],
+    howToUse: [
+      "「GPA計算（大学）」または「評定平均計算（高校）」のタブを選びます。",
+      "科目を追加し、単位数・成績（またはは評定）を入力します。不要な科目は削除できます。",
+      "GPA（または評定平均）が自動で計算されます。",
+    ],
+    calculationMethod: [
+      "GPA = Σ(グレードポイント × 単位数) ÷ Σ(単位数)。グレードポイントはS=4・A=3・B=2・C=1・D=0（文部科学省のGPAガイドラインに準拠）で計算しています。",
+      "評定平均 = Σ評定 ÷ 科目数（単純平均）。「単位数で重み付けする」を有効にすると、Σ(評定 × 単位数) ÷ Σ単位数 で計算します。",
+    ],
+    faq: [
+      {
+        question: "GPAのグレードポイントの基準は何ですか？",
+        answer: "文部科学省のGPA運用ガイドラインで広く採用されているS(4)・A(3)・B(2)・C(1)・D(0)の5段階を採用しています。大学によって独自の基準（S/AA/A/B/C等）を使う場合があるため、正確な数値は大学の成績証明書と合わせてご確認ください。",
+      },
+      {
+        question: "評定平均は単位数で重み付けすべきですか？",
+        answer: "多くの高校・推薦入試では単純平均（科目数で割る方式）が使われますが、学校によっては単位数による重み付けを採用する場合があります。「単位数で重み付けする」のチェックで切り替えられます。",
+      },
+      {
+        question: "入力した成績データはサーバーに送信されますか？",
+        answer: "いいえ。すべての計算はブラウザ内で完結し、サーバーに送信・保存されることはありません。",
+      },
+    ],
+    relatedSlugs: ["hensachi-calculator", "graduation-date", "school-year-lookup"],
   },
 ];
