@@ -10,8 +10,13 @@ export type CategorySlug = "image" | "pdf" | "calculator" | "text" | "life" | "c
 export interface CategoryDefinition {
   slug: CategorySlug;
   name: string;
+  /** One-line summary used on cards and as the meta description */
   description: string;
   icon: string;
+  /** Paragraphs rendered as the intro copy on /category/[slug] */
+  longDescription?: string[];
+  /** "選び方のポイント" bullets rendered under the tool grid on /category/[slug] */
+  selectionTips?: string[];
 }
 
 export interface FaqItem {

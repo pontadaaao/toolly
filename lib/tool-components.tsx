@@ -171,4 +171,23 @@ export const toolComponents: Record<string, ComponentType> = {
     () => import("@/features/gpa-calculator/gpa-calculator").then((m) => m.GpaCalculator),
     { loading: () => <ToolSkeleton />, ssr: false }
   ),
+  "pdf-split": dynamic(() => import("@/features/pdf-split/pdf-splitter").then((m) => m.PdfSplitter), {
+    loading: () => <ToolSkeleton />,
+    ssr: false,
+  }),
+  "image-to-pdf": dynamic(
+    () => import("@/features/image-to-pdf/image-to-pdf-converter").then((m) => m.ImageToPdfConverter),
+    { loading: () => <ToolSkeleton />, ssr: false }
+  ),
+  "instagram-line-break": dynamic(
+    () =>
+      import("@/features/instagram-line-break/instagram-line-break-formatter").then(
+        (m) => m.InstagramLineBreakFormatter
+      ),
+    { loading: () => <ToolSkeleton />, ssr: false }
+  ),
+  "sns-profile-counter": dynamic(
+    () => import("@/features/sns-profile-counter/sns-profile-counter").then((m) => m.SnsProfileCounter),
+    { loading: () => <ToolSkeleton />, ssr: false }
+  ),
 };

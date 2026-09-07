@@ -8,6 +8,10 @@ export const siteConfig = {
     "インストール不要・登録不要。仕事や日常で役立つ便利ツールを無料で利用できます。",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://toollys.com",
   twitterHandle: "@toolly",
+  /** Shown in the 運営者情報 table on /about. */
+  operator: "Toolly運営チーム",
+  /** Shown in the 運営者情報 table on /about. */
+  establishedAt: "2026年8月",
 };
 
 interface BuildMetadataOptions {

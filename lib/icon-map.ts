@@ -30,6 +30,10 @@ import {
   Percent,
   QrCode,
   Ratio,
+  Scissors,
+  ScrollText,
+  FileDown,
+  IdCard,
   RefreshCw,
   Palette,
   School,
@@ -51,6 +55,10 @@ import {
  * lets them stay server-safe and trivially serializable.
  */
 export const iconMap: Record<string, LucideIcon> = {
+  Scissors,
+  ScrollText,
+  FileDown,
+  IdCard,
   GraduationCap,
   Activity,
   Percent,
